@@ -1,7 +1,5 @@
-import { User } from './user';
+import { Board } from './analyzer/board-game/board'
 
-const user: User = {
-    email: 'test@test.qwe',
-    name: 'Test',
-}
-console.log(user);
+const board = new Board(1, 10, []);
+
+console.log(board.firstMapElement);

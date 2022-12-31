@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
       "target": "es6",
-      "module": "commonjs",
+      "module": "CommonJS",
       "sourceMap": true,
       "typeRoots": ["./node_modules/@types"],
       "esModuleInterop": true,
