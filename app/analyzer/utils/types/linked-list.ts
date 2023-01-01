@@ -1,3 +1,5 @@
 export interface LinkedList<T> {
-    readonly next: T | null;
+    next: T | null;
+
+    readonly value: any;
 }

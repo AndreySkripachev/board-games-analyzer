@@ -1,7 +1,7 @@
-export interface BoardCell {
-    readonly value: number;
+import { LinkedList } from "../utils/types/linked-list";
 
-    next: BoardCell | null;
+export interface BoardCell extends LinkedList<BoardCell> {
+    shiftTo?: BoardCell;
 }
 
 
