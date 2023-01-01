@@ -1,4 +1,4 @@
-import { LinkedList } from "../types/linked-list";
+import { LinkedList } from '../types';
 
 export function getElementFromList<T extends LinkedList<T>>(
     firstElement: T, 

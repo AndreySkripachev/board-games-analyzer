@@ -1,7 +1,5 @@
-import { range } from "../utils/functions/range";
-import { BoardCell } from "./board-cell";
-import { contains } from '../utils/functions/contains';
-import { getElementFromList } from '../utils/functions/get-element-from-list';
+import { range, getElementFromList } from '../utils/functions';
+import { BoardCell } from './board-cell';
 
 export class Board {
     public readonly firstMapElement: BoardCell;
@@ -33,13 +31,11 @@ export class Board {
             }
 
             previous.next = current;
-
             previous = current;
         }
 
         for (const [valueFrom, valueTo] of rules) {
             const from = getElementFromList(first, valueFrom);
-
             const to = getElementFromList(first, valueTo);
 
             from !== null && (from.shiftTo = to);
