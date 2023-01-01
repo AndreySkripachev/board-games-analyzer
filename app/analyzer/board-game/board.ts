@@ -4,7 +4,7 @@ import { BoardCell } from './board-cell';
 export class Board {
     public readonly firstMapElement: BoardCell;
 
-    constructor(
+    public constructor(
         start: number, 
         finish: number, 
         rules: readonly `${number}->${number}`[],

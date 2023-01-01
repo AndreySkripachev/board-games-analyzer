@@ -3,7 +3,7 @@ import { BoardCell } from './board-cell'
 export class Player {
     public nextPlayer: Player | null = null;
 
-    constructor(
+    public constructor(
         public readonly name: string,
         public position: BoardCell
     ) {}
