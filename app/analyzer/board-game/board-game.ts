@@ -13,8 +13,9 @@ export class BoardGame {
         players: readonly string[],
         mapLength: number,
         rules: readonly `${number}->${number}`[],
+        skipStepPoints: readonly number[],
     ) {
-        this.board = new Board(1, mapLength, rules);
+        this.board = new Board(1, mapLength, rules, skipStepPoints);
 
         this.player = mapArrayToClosedList<string, Player>(players, name => new Player(
             name, 
@@ -23,16 +24,20 @@ export class BoardGame {
     }
 
     public step(): GameStatus {
+        if (!this.player.canMove) {
+            this.player.canMove = true;
+
+            this.changePlayer();
+            return GameStatus.OK;
+        }
+
         const steps = this.dice.roll();
 
         this.player.moveBy(steps);
+        this.changePlayer();
         
         if (this.player.position.next === null) {
             return GameStatus.FINISH;
-        }
-
-        if (this.player.next !== null) {
-            this.player = this.player.next;
         }
 
         return GameStatus.OK;
@@ -43,7 +48,14 @@ export class BoardGame {
             currentPlayer: {
                 name: this.player.value,
                 position: this.player.position,
+                canMove: this.player.canMove,
             }
+        }
+    }
+
+    private changePlayer(): void {
+        if (this.player.next !== null) {
+            this.player = this.player.next;
         }
     }
 }

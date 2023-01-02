@@ -3,6 +3,7 @@ import { LinkedList } from '../utils/types'
 
 export class Player implements LinkedList<Player> {
     public next: Player | null = null;
+    public canMove = true;
 
     public constructor(
         public readonly value: string,
@@ -17,6 +18,10 @@ export class Player implements LinkedList<Player> {
 
         while (this.position.shiftTo !== undefined) {
             this.position = this.position.shiftTo;
+        }
+
+        if (this.position.shouldSkipStep) {
+            this.canMove = false;
         }
     }
 

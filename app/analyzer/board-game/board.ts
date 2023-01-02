@@ -8,17 +8,24 @@ export class Board {
         start: number, 
         finish: number, 
         rules: readonly `${number}->${number}`[],
+        skipSteps: readonly number[],
     ) {
         this.firstMapElement = this.mapRulesToBoard(
             [...range(start, finish+1)], 
             rules.map(item => item.split('->').map(Number) as [from: number, to:number]),
+            skipSteps,
         );
     }
 
-    private mapRulesToBoard(gamePoints: number[], rules: readonly [from: number, to:number][]): BoardCell {
+    private mapRulesToBoard(
+        gamePoints: number[], 
+        rules: readonly [from: number, to:number][],
+        skipSteps: readonly number[],
+    ): BoardCell {
         const first: BoardCell = {
             next: null,
             value: gamePoints[0],
+            shouldSkipStep: false,
         }
 
         let current = first;
@@ -28,6 +35,7 @@ export class Board {
             current = {
                 next: null, 
                 value: item,
+                shouldSkipStep: skipSteps.includes(item)
             }
 
             previous.next = current;
