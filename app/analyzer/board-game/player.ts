@@ -1,10 +1,11 @@
 import { BoardCell } from './board-cell'
+import { LinkedList } from '../utils/types'
 
-export class Player {
-    public nextPlayer: Player | null = null;
+export class Player implements LinkedList<Player> {
+    public next: Player | null = null;
 
     public constructor(
-        public readonly name: string,
+        public readonly value: string,
         public position: BoardCell
     ) {}
     
