@@ -19,4 +19,8 @@ export class Player implements LinkedList<Player> {
             this.position = this.position.shiftTo;
         }
     }
+
+    public getName(): string {
+        return this.value;
+    }
 }
