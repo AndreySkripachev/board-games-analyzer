@@ -3,7 +3,7 @@ import { Dice } from './analyzer/dice/dice';
 
 const players = ['Andrey', 'Alina', 'Nikita'];
 
-const game1 = new BoardGame(new Dice(6), players, 88, [
+const game1 = new BoardGame(new Dice(6, 1), players, 88, [
     '3->12', 
     '9->4', 
     '10->27', 
