@@ -1,5 +1,4 @@
-import { BoardGame } from '../../board-game/board-game';
-import { Player } from '../../board-game/player';
+import { Player } from '../../board-game';
 
 export interface GameInfo {
     currentPlayer: {

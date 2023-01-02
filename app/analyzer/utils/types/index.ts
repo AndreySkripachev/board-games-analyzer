@@ -1,2 +1,3 @@
 export * from './linked-list';
-export * from './non-empty-string';
+export * from './game-info';
+export * from './game-status';

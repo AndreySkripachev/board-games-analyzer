@@ -1,4 +1,4 @@
-import { BoardCell } from './board-cell'
+import { BoardCell } from '.'
 import { LinkedList } from '../utils/types'
 
 export class Player implements LinkedList<Player> {

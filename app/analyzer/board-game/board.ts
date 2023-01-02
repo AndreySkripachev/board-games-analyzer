@@ -1,5 +1,5 @@
 import { range, getElementFromList } from '../utils/functions';
-import { BoardCell } from './board-cell';
+import { BoardCell } from '.';
 
 export class Board {
     public readonly firstMapElement: BoardCell;

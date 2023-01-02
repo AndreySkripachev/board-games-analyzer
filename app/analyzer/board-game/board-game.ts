@@ -1,19 +1,25 @@
 import { Dice } from '../dice/dice';
-import { Player } from './player';
-import { Board } from './board';
-import { GameStatus } from '../utils/types/game-status';
-import { GameInfo } from '../utils/types/game-info'
+import { Player, Board } from '.';
+import { GameStatus, GameInfo } from '../utils/types';
+import { mapArrayToClosedList } from '../utils/functions';
 
+// TODO: improve information visualization
 export class BoardGame {
     private readonly board: Board;
+    private player: Player;
 
     public constructor(
         private readonly dice: Dice,
-        private player: Player,
+        players: readonly string[],
         mapLength: number,
         rules: readonly `${number}->${number}`[],
     ) {
         this.board = new Board(1, mapLength, rules);
+
+        this.player = mapArrayToClosedList<string, Player>(players, name => new Player(
+            name, 
+            this.board.firstMapElement,
+        ))
     }
 
     public step(): GameStatus {
