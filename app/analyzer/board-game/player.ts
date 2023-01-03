@@ -25,10 +25,6 @@ export class Player implements LinkedList<Player> {
         while (this.position.shiftTo !== undefined) {
             this.position = this.position.shiftTo;
         }
-
-        if (this.position.shouldSkipStep) {
-            this.canMove = false;
-        }
     }
 
     public getName(): string {

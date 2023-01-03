@@ -30,18 +30,15 @@ export class BoardGame {
         if (!this.player.canMove) {
             this.player.canMove = true;
 
-            this.log(`Player ${this.player.value} now can move (Point ${this.player.position.value})`)
+            this.log(`${this.player.value}: now can move (Point ${this.player.position.value})`)
             this.changePlayer();
             return GameStatus.OK;
         }
 
-        const steps = this.dice.roll();
-        const prevPosition = this.player.position.value;
-        this.player.moveBy(steps);
-        this.log(`Player ${this.player.value}: ${prevPosition} -> ${this.player.position.value}`)
+        this.movePlayer();
         
         if (this.player.position.next === null) {
-            this.log(`Player ${this.player.value} win!`);
+            this.log(`${this.player.value} win!`);
             return GameStatus.FINISH;
         }
         
@@ -76,5 +73,17 @@ export class BoardGame {
 
     private log(data: string): void {
         this.logs.push(`- ${data}`);
+    }
+
+    private movePlayer(): void {
+        const steps = this.dice.roll();
+
+        const prevPosition = this.player.position.value;
+        this.player.moveBy(steps);
+
+        if (this.player.position.shouldSkipStep) {
+            this.player.canMove = false;
+            this.log(`${this.player.value}: skip step (Point ${this.player.position.value})`);
+        } else this.log(`${this.player.value}: ${prevPosition} -> ${this.player.position.value}`);
     }
 }
