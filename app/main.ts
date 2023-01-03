@@ -39,11 +39,11 @@ const game1 = new BoardGame(
 const game = game1
 
 while (true) {
-    console.log(game.getGameInfo());
+    console.log(game.getLastLogs().join('\n'));
     const status = game.step();
 
     if (status === 'FINISH')
         break;
 }
 
-console.log(game.getGameInfo());
+console.log(game.getLastLogs().join('\n'));
