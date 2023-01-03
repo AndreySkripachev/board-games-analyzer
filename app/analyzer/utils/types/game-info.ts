@@ -1,9 +1,6 @@
-import { Player } from '../../board-game';
+import { PlayerInfo } from '../../board-game';
 
 export interface GameInfo {
-    currentPlayer: {
-        name: Player['value'];
-        position: Player['position'];
-        canMove: Player['canMove'];
-    }
+    currentPlayer: PlayerInfo,
+    players: readonly PlayerInfo[],
 }

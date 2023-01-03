@@ -1,5 +1,11 @@
-import { BoardCell } from '.'
-import { LinkedList } from '../utils/types'
+import { BoardCell } from '.';
+import { LinkedList } from '../utils/types';
+
+export interface PlayerInfo {
+    readonly canMove: boolean;
+    readonly name: string;
+    readonly position: BoardCell['value'];
+}
 
 export class Player implements LinkedList<Player> {
     public next: Player | null = null;

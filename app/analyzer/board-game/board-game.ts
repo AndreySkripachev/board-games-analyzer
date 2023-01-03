@@ -1,7 +1,7 @@
 import { Dice } from '../dice/dice';
-import { Player, Board } from '.';
+import { Player, Board, PlayerInfo } from '.';
 import { GameStatus, GameInfo } from '../utils/types';
-import { mapArrayToClosedList } from '../utils/functions';
+import { mapArrayToClosedList, mapClosedListToArray } from '../utils/functions';
 
 // TODO: improve information visualization
 export class BoardGame {
@@ -47,9 +47,17 @@ export class BoardGame {
         return {
             currentPlayer: {
                 name: this.player.value,
-                position: this.player.position,
+                position: this.player.position.value,
                 canMove: this.player.canMove,
-            }
+            },
+            players: mapClosedListToArray<PlayerInfo, Player>(
+                this.player,
+                ({ 
+                    canMove, 
+                    value: name, 
+                    position: { value: position },
+                }) => ({ canMove, name, position }),
+            )
         }
     }
 
