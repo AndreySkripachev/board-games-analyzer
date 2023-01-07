@@ -1,10 +1,16 @@
+import readline from 'readline';
 import { BoardGame } from './analyzer/board-game';
 import { Dice } from './analyzer/dice/dice';
 
-const players = ['Andrey', 'Alina', 'Nikita'];
+const readlineInterface = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
+});
+
+const players = ['Андрей', 'Алина', 'Иван'];
 
 const game1 = new BoardGame(
-    new Dice(6, 1), 
+    new Dice(6, 2), 
     players, 
     88, 
     [
@@ -36,14 +42,26 @@ const game1 = new BoardGame(
     [7, 19, 26, 41, 54, 71],
 )
 
-const game = game1
+const game = game1;
 
-while (true) {
+async function main(): Promise<void> {
+    const game = game1;
+
+    while (true) {
+        console.log(game.getLastLogs().join('\n'));
+        const status = game.step();
+    
+        if (status === 'FINISH')
+            break;
+    }
+
     console.log(game.getLastLogs().join('\n'));
-    const status = game.step();
 
-    if (status === 'FINISH')
-        break;
+    return void 0;
 }
 
-console.log(game.getLastLogs().join('\n'));
+main().then(readlineInterface.close);
+
+
+
+console.log(process.stdout.columns);

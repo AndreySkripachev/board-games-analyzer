@@ -1,3 +1,3 @@
 export * from './linked-list';
-export * from './game-info';
-export * from './game-status';
+export * from './board-game/info';
+export * from './board-game/status';
